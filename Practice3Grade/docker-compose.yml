@@ -1,0 +1,17 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5050:5050"
+    volumes:
+      - .:/app
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: "pytest -v Test/api_test.py"
+    depends_on:
+      - web
